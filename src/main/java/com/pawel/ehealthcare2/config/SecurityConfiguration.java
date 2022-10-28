@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                 .csrf().disable()
                 .authorizeRequests(auth -> {
                     auth.antMatchers("/").permitAll();
+                    auth.antMatchers("/register").permitAll();
                     auth.antMatchers("/user*").hasAuthority("USER");
                     auth.antMatchers("/admin*").hasAuthority("ADMIN");
                 })

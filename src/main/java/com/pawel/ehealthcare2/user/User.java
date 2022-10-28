@@ -14,18 +14,20 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name="user")
+@Getter
+@Setter
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, updatable = false)
     private int id;
 
     @Transient
-    @Setter
     private List<GrantedAuthority> authorityList;
+    @Column(unique = true)
     private String username;
     private String password;
-    @Getter
     private String roles;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
@@ -71,4 +73,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
 }
